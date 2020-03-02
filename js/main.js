@@ -8,27 +8,57 @@ $('.prev').click(function() {
     prevImage();
 })
 
-// Ogni immagine vieve visualizzata per un certo numero di millisecondi
-slideshowLoop(loop, 3000); // passa un valore in ms
-
-// Ferma il loop dopo un certo numero di millisecondi
-stopSlideshowAutoplay(loop, 6000); // passa un valore in ms
-
-
 // FUNZIONI
 var loop;
-
 function stopSlideshowAutoplay(loop, msDuration) {
     setTimeout(function() {
         clearInterval(loop);
     }, msDuration);
 }
-
 function slideshowLoop(loop, msDuration) {
     loop = setInterval(function() {
         nextImage();
     }, msDuration);
+    return loop; //Ritorno l'interval creato
 }
+// Start interval
+loop = slideshowLoop(loop, 3000); //Assegno il nuovo valore a loop con dentro l'interval
+// Ferma il loop dopo un certo numero di millisecondi
+stopSlideshowAutoplay(loop, 37000);
+
+// Play / Pause
+$('.slider-nav .fa-pause-circle').click(function() {
+    clearInterval(loop);
+    $('.slider-nav .fa-pause-circle').addClass('hidden');
+    $('.slider-nav .fa-play-circle').removeClass('hidden');
+})
+
+$('.slider-nav .fa-play-circle').click(function() {
+    loop = slideshowLoop(loop, 3000);
+    $('.slider-nav .fa-play-circle').addClass('hidden');
+    $('.slider-nav .fa-pause-circle').removeClass('hidden');
+})
+
+// VECCHIO CODICE NON FUNZIONANTE
+// Ferma il loop dopo un certo numero di millisecondi
+// stopSlideshowAutoplay(loop, 6000); // passa un valore in ms
+
+// Ogni immagine vieve visualizzata per un certo numero di millisecondi
+// slideshowLoop(loop, 3000); // passa un valore in ms
+
+// var loop;
+//
+// function stopSlideshowAutoplay(loop, msDuration) {
+//     setTimeout(function() {
+//         clearInterval(loop);
+//     }, msDuration);
+// }
+//
+// function slideshowLoop(loop, msDuration) {
+//     loop = setInterval(function() {
+//         nextImage();
+//     }, msDuration);
+// }
 
 function nextImage() {
     if ( $('.images img.active').hasClass('last') ) {
@@ -79,3 +109,46 @@ function prevImage() {
         precedentePallino.addClass('active');
     }
 }
+
+
+// SUPPORTO DI NIKOLAS
+
+// prova una cosa di questo tipo
+// // FUNZIONI
+// var loop;
+// function stopSlideshowAutoplay(loop, msDuration) {
+//     setTimeout(function() {
+//         clearInterval(loop);
+//     }, msDuration);
+// }
+// function slideshowLoop(loop, msDuration) {
+//     loop = setInterval(function() {
+//         nextImage();
+//     }, msDuration);
+//     // Ferma il loop dopo un certo numero di millisecondi
+//     stopSlideshowAutoplay(loop, 6000);
+// }
+// // Start interval
+// slideshowLoop(loop, 3000);
+// 5:33
+// il problema del codice che hai è che loop è dichiarato dopo aver chiamato le funzioni.. e lo start e stop vengono richiamate una dopo l'altra.. ma essendo asincrone le timing function la variabile loop non è stata ancora definita
+// 5:34
+// ti lascio un'altra alternativa
+// 5:34
+// // FUNZIONI
+// var loop;
+// function stopSlideshowAutoplay(loop, msDuration) {
+//     setTimeout(function() {
+//         clearInterval(loop);
+//     }, msDuration);
+// }
+// function slideshowLoop(loop, msDuration) {
+//     loop = setInterval(function() {
+//         nextImage();
+//     }, msDuration);
+//     return loop; //Ritorno l'interval creato
+// }
+// // Start interval
+// loop = slideshowLoop(loop, 3000); //Assegno il nuovo valore a loop con dentro l'interval
+// // Ferma il loop dopo un certo numero di millisecondi
+// stopSlideshowAutoplay(loop, 6000);

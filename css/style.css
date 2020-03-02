@@ -54,6 +54,24 @@
     background-color: rgba(0,0,0,0.5);
 }
 
+.slider-nav i {
+    cursor: pointer;
+}
+
 .slider-nav i.active {
     color: white;
+}
+
+.slider-nav .fa-play-circle {
+    color: white;
+    margin-left: 5px;
+}
+
+.slider-nav .fa-pause-circle {
+    color: white;
+    margin-left: 5px;
+}
+
+i.hidden {
+    display: none;
 }
