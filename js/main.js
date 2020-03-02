@@ -26,7 +26,7 @@ loop = slideshowLoop(loop, 3000); //Assegno il nuovo valore a loop con dentro l'
 // Ferma il loop dopo un certo numero di millisecondi
 stopSlideshowAutoplay(loop, 37000);
 
-// Play / Pause
+// play/pause button
 $('.slider-nav .fa-pause-circle').click(function() {
     clearInterval(loop);
     $('.slider-nav .fa-pause-circle').addClass('hidden');
@@ -39,6 +39,14 @@ $('.slider-nav .fa-play-circle').click(function() {
     $('.slider-nav .fa-pause-circle').removeClass('hidden');
 })
 
+// mouseleave --> play / mouseenter --> pause
+$('.slideshow').mouseenter(function() {
+    clearInterval(loop);
+})
+
+$('.slideshow').mouseleave(function() {
+    loop = slideshowLoop(loop, 3000);
+})
 // VECCHIO CODICE NON FUNZIONANTE
 // Ferma il loop dopo un certo numero di millisecondi
 // stopSlideshowAutoplay(loop, 6000); // passa un valore in ms
