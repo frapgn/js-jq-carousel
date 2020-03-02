@@ -1,11 +1,34 @@
-
+// Dopo il click vai all'immagine successiva
 $('.next').click(function() {
     nextImage();
 })
 
+// Dopo il click vai all'immagine precedente
 $('.prev').click(function() {
     prevImage();
 })
+
+// Ogni immagine vieve visualizzata per un certo numero di millisecondi
+slideshowLoop(loop, 3000); // passa un valore in ms
+
+// Ferma il loop dopo un certo numero di millisecondi
+stopSlideshowAutoplay(loop, 6000); // passa un valore in ms
+
+
+// FUNZIONI
+var loop;
+
+function stopSlideshowAutoplay(loop, msDuration) {
+    setTimeout(function() {
+        clearInterval(loop);
+    }, msDuration);
+}
+
+function slideshowLoop(loop, msDuration) {
+    loop = setInterval(function() {
+        nextImage();
+    }, msDuration);
+}
 
 function nextImage() {
     if ( $('.images img.active').hasClass('last') ) {
@@ -23,7 +46,7 @@ function nextImage() {
         imgAttiva.removeClass('active');
         prossimaImg.addClass('active');
 
-        //
+        //Slider-Nav
         var pallinoAttivo = $('.slider-nav i.active');
         var prossimoPallino = $('.slider-nav i.active').next();
 
