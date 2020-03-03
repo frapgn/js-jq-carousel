@@ -45,7 +45,7 @@ $('.slider-nav .fa-play-circle').click(function() {
 // click sul pallino --> vai alla slide corrispondente
 $('.slider-nav i').click(function() {
     var circleIndex = $(this).index();
-    console.log(circleIndex);
+    // console.log(circleIndex);
     var domElementByIndex = $('.images img').get(circleIndex);
     console.log(domElementByIndex);
     $('.slider-nav i').removeClass('active');
@@ -59,12 +59,37 @@ $('.slider-nav i').click(function() {
 // $('.slideshow').mouseenter(function() {
 //     clearInterval(loop);
 // })
-
+//
 // $('.slideshow').mouseleave(function() {
 //     loop = slideshowLoop(loop, 3000);
 // })
 
+// Gestione tastiera
+// $(document).keydown(function(event) {
+//     switch (event.which) {
+//         case 37:
+//             prevImage();
+//             break;
+//         case 39:
+//             nextImage();
+//             break;
+//         default:
+//
+//     }
+// });
 
+$(document).keydown(function(event) {
+    switch (event.key) {
+        case 'ArrowLeft':
+            prevImage();
+            break;
+        case 'Arro Right':
+            nextImage();
+            break;
+        default:
+
+    }
+});
 ////////////////////////////////////////////////////////////////////////////////
 // VECCHIO CODICE NON FUNZIONANTE
 // Ferma il loop dopo un certo numero di millisecondi
